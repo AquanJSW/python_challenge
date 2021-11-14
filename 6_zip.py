@@ -28,10 +28,14 @@ if __name__ == '__main__':
     max_iter = len(zf.namelist()) - 1
 
     fname = '90052.txt'
+    comments = []
 
     for _ in range(max_iter):
         ans = insight_file(zf, fname)
         if ans:
+            comments.append(codecs.decode(zf.getinfo(fname).comment))
             fname = get_fname(ans)
         else:
             break
+
+    print(''.join(comments))
